@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  getStatistics, 
-  getConflicts, 
-  getExamens, 
-  getSalles,
+import {
+  getStatistics,
+  getConflicts,
+  getExamens,
   getPendingViceDeanApprovals,
   approveExamViceDean
 } from '../services/api';
@@ -99,14 +98,14 @@ const DeanDashboard = () => {
                   <td>{examen.heure}</td>
                   <td>{examen.duree} min</td>
                   <td>
-                    <button 
+                    <button
                       onClick={() => handleApprove(examen.id, true)}
                       disabled={loading}
                       className="btn-approve"
                     >
                       Approve
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleApprove(examen.id, false)}
                       disabled={loading}
                       className="btn-reject"

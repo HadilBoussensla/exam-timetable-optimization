@@ -8,7 +8,7 @@ import DeptHeadDashboard from './components/DeptHeadDashboard';
 import StudentView from './components/StudentView';
 import ProfessorView from './components/ProfessorView';
 import ProtectedRoute from './components/ProtectedRoute';
-import { logout, getUserRole, isAuthenticated, setAuthToken, getAuthToken } from './services/auth';
+import { logout, getUserRole, setAuthToken, getAuthToken } from './services/auth';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -74,11 +74,11 @@ function AppLayout() {
             </ProtectedRoute>
           } />
           <Route path="/" element={
-            <Navigate to={userRole === 'admin' ? '/admin' : 
-                        userRole === 'dean' ? '/dean' : 
-                        userRole === 'dept_head' ? '/dept-head' : 
-                        userRole === 'professor' ? '/professor' : 
-                        userRole === 'student' ? '/student' : '/login'} replace />
+            <Navigate to={userRole === 'admin' ? '/admin' :
+              userRole === 'dean' ? '/dean' :
+                userRole === 'dept_head' ? '/dept-head' :
+                  userRole === 'professor' ? '/professor' :
+                    userRole === 'student' ? '/student' : '/login'} replace />
           } />
         </Routes>
       </div>
