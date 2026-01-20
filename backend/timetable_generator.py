@@ -31,9 +31,24 @@ class TimetableGenerator:
         professors = self.db.query(Professeur).all()
         
         # Delete existing exams for the date range
-        self.db.query(Examen).filter(
+        # Find IDs of exams to delete
+        exams_to_delete = self.db.query(Examen.id).filter(
             and_(Examen.date >= start_date, Examen.date <= end_date)
-        ).delete()
+        ).all()
+        exam_ids = [e[0] for e in exams_to_delete]
+        
+        if exam_ids:
+            # Delete dependencies first
+            self.db.execute(
+                examens_salles.delete().where(examens_salles.c.examen_id.in_(exam_ids))
+            )
+            self.db.execute(
+                surveillances.delete().where(surveillances.c.examen_id.in_(exam_ids))
+            )
+            
+            # Delete exams
+            self.db.query(Examen).filter(Examen.id.in_(exam_ids)).delete(synchronize_session=False)
+
         self.db.commit()
         
         generated_exams = []

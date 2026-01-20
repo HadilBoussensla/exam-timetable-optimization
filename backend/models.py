@@ -17,7 +17,7 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String(50), unique=True, nullable=False, index=True)
     password_hash = Column(String(255), nullable=False)
-    role = Column(SQLEnum(UserRole), nullable=False)
+    role = Column(SQLEnum(UserRole, name="user_role", values_callable=lambda x: [e.value for e in x]), nullable=False)
     # Optional: link to specific entity (professor or student)
     professeur_id = Column(Integer, ForeignKey("professeurs.id"), nullable=True)
     etudiant_id = Column(Integer, ForeignKey("etudiants.id"), nullable=True)
