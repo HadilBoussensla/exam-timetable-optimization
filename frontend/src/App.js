@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
@@ -8,7 +9,7 @@ import DeptHeadDashboard from './components/DeptHeadDashboard';
 import StudentView from './components/StudentView';
 import ProfessorView from './components/ProfessorView';
 import ProtectedRoute from './components/ProtectedRoute';
-import { logout, getUserRole, isAuthenticated, setAuthToken, getAuthToken } from './services/auth';
+import { logout, getUserRole, setAuthToken, getAuthToken } from './services/auth';
 
 function Navbar() {
   const navigate = useNavigate();
